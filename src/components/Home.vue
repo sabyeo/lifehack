@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <button class="fill"><router-link to="/sign_up">Sign Up</router-link></button>
-    <button class="fill"><router-link to="/sign_in">Sign In</router-link></button> 
+    <button class="fill"><router-link to="/sign_in">Log In</router-link></button> 
 
 
   </div>
@@ -13,13 +13,17 @@ export default {
   name: 'Home',
   data(){
     return{
-      msg: 'Welcome to Umzies'
+      msg: 'Connecting You with Study Buddies'
       }
   } 
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  padding-top:25vh;
+  font-size: 80px;
+}
 h3 {
   margin: 40px 0 0;
 }
