@@ -129,7 +129,7 @@ a {
 }
 #right {
   width: 20%;
-  height: 100vh;
+  height: 82vh;
   float: right;
   border-color: #1D3557;
   border-style: solid;
