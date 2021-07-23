@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div class='outer' v-for="member in group" v-bind:key="member.accountDetail.email">
-      <div class='outer' v-if="member.accountDetail.email != ownEmail">
-        <h2>{{member.accountDetail.name}}</h2>
-        <a v-bind:href="'https://t.me/'+ member.accountDetail.tele">Contact via Telegram!</a>
-      </div>
-    </div>
+    <h2>{{group.groupName}}</h2>
     <p>Common Modules:</p>
+    <li v-for="mod in group.common_modules" v-bind:key="mod">
+        {{mod}}
+    </li>
   </div>
 </template>
 
@@ -16,12 +14,6 @@ export default {
     group: {
       type: Array,
     },
-    ownModules: {
-      type: Array,
-    },
-    ownEmail: {
-      type: String,
-    }
   },
   data(){
     return{
