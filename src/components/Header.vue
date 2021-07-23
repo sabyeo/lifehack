@@ -5,13 +5,13 @@
         <h1><router-link to="/" exact id="index">{{ msg }}</router-link></h1>
         <div class="links">
           <a>
+            <router-link to="/about" exact>About Us</router-link>
+          </a>
+          <a>
             <router-link to="/groups" exact>Find a Group</router-link>
           </a>
           <a>
             <router-link to="/friend" exact>Find a Friend</router-link>
-          </a>
-          <a>
-            <router-link to="/about" exact>About Us</router-link>
           </a>
           <a>
             <router-link to="/main" exact>Home</router-link>
