@@ -10,6 +10,9 @@
           <a>
             <router-link to="/" exact>Home</router-link>
           </a>
+          <a>
+            <router-link to="/test_firebase" exact>Test Firebase</router-link>
+          </a>
         </div>
         </nav>
     </header>
