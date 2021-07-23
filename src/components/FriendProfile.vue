@@ -1,11 +1,16 @@
 <template>
   <div>
-      <h2>{{friend.accountDetail.name}}</h2>
-      <p>Common Modules:</p>
-      <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
-          {{mod}}
-      </li>
-      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">Contact via Telegram!</a>
+    <h2>{{friend.accountDetail.name}}</h2>
+    <h4>Common Modules:</h4>
+    <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
+        {{mod}}
+    </li>
+    <div id='buttonDiv'>
+      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">
+        <!-- HARDCODE USER TO CHANGE-->
+        <button class="ui button">CONTACT</button> 
+      </a>
+    </div>
   </div>
 </template>
 
@@ -30,11 +35,17 @@ div {
     padding: 10px
 }
 
-h2 {
+h2, h4 {
     margin: 5px
 }
 
 p {
     margin: 5px;
+}
+
+#buttonDiv {
+  padding: 0;
+  margin: 5px;
+  margin-top: 15px;
 }
 </style>
