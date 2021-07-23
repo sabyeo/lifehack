@@ -33,7 +33,7 @@ export default {
     partnerMade: function(u2) {
       var user = auth.currentUser;
       if (user) {
-        const u1_ref = 'user/' + user // HARDCODE TO CHANGE U1
+        const u1_ref = 'user/' + user.email // HARDCODE TO CHANGE U1
         const u2_ref = 'user/' + u2.email
         
         database.collection('pair').add({
