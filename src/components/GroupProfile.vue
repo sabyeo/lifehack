@@ -7,9 +7,6 @@
       </div>
     </div>
     <p>Common Modules:</p>
-      <li v-for="mod in groupCommonModules" v-bind:key="mod">
-          {{mod}}
-      </li>
   </div>
 </template>
 
@@ -33,19 +30,8 @@ export default {
       }
   },
   methods:{
-    getGroupModules(groups) {
-      let commonMods = this.ownModules;
-      for (var member in groups) {
-        console.log(member.accountDetail.modules)
-        let findCommon = member.accountDetail.modules.filter(value => commonMods.includes(value));
-        console.log(findCommon)
-        commonMods = findCommon;
-      }
-      this.groupCommonModules = commonMods
-    },
   },
   created() {
-    this.getGroupModules();
   },
 }
 </script>
