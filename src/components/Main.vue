@@ -18,8 +18,8 @@
       <FriendProfile v-bind:friend="friend" v-bind:ownModules="ownModules"></FriendProfile>
     </div>
     <h2> Groups </h2>
-    <div v-for="group in this.groupList" v-bind:key="group.id">
-      <li v-for="members in group" v-bind:key="members.name">{{members.name}}</li>
+    <div v-for="group in groupMemberList" v-bind:key="group.index">
+      <GroupProfile v-bind:group="group" v-bind:ownModules="ownModules" v-bind:ownEmail="ownEmail"></GroupProfile>
     </div>
   </div>
 </div>
@@ -28,19 +28,21 @@
 <script>
 import { database } from "@/firebase/";
 import FriendProfile from './FriendProfile.vue';
+import GroupProfile from './GroupProfile.vue';
 
 export default {
   name: 'Home',
   data(){
     return{
-        msg: 'Friend Group Button',
+        ownEmail: "",
         ownModules: [],
         pairList: [],
-        groupList: [],
+        groupMemberList: [],
       }
   },
   components: {
     FriendProfile,
+    GroupProfile,
   },
   methods: {
     fetchItems: function () {
@@ -50,6 +52,7 @@ export default {
         .get()
         .then(documentSnapshot => {
           if (documentSnapshot.exists) {
+            this.ownEmail = documentSnapshot.data().accountDetail.email
             this.ownModules = documentSnapshot.data().accountDetail.modules
             
             // get pairs
@@ -70,6 +73,10 @@ export default {
             })
           }
         });
+
+      console.log('test')
+      console.log(this.groupMemberList)
+      console.log('test done')
     },
     getGroupMembers: function (data) {
       console.log('get group members called')
@@ -87,18 +94,12 @@ export default {
     this.fetchItems();
   },
   mounted() {
-      console.log('test')
-      console.log(this.groupMemberList)
-      console.log('test done')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2 {
-  margin-top: 20px;
-}
 h3 {
   margin: 40px 0 0;
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
       <h2>{{friend.accountDetail.name}}</h2>
-      <p>Similar Modules:</p>
+      <p>Common Modules:</p>
       <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
           {{mod}}
       </li>
