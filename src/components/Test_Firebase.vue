@@ -28,7 +28,6 @@ export default {
           querySnapShot.forEach((doc) => {
             item = doc.data();
             this.testlist.push(item)
-            
           });
         });
     }

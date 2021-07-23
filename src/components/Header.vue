@@ -43,14 +43,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #main{
-    background-color: #FFDDD2;
+    background-color: #1D3557;
     border-bottom-style: solid;
     border-bottom-color: white;
     border-bottom-width: 1px;
     height:80px;
     width: 100%;
     top: 0;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
 }
 
 h1 {
@@ -64,7 +64,7 @@ h1 {
 }
 
 a{
-  color:#E29578;
+  color:#F1FAEE;
   text-decoration: none;
   float: right;
   margin-right: 10px;
@@ -74,5 +74,9 @@ a{
   padding-right: 10px;
   float: right;
   margin-top: 55px;
+}
+
+#index{
+  margin-top: 15px;
 }
 </style>
