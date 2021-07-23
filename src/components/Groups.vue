@@ -39,7 +39,7 @@ import { database,auth } from "@/firebase/";
           .then((querySnapShot) => {
             // let item = {};
             querySnapShot.forEach((doc) => {
-              if (doc.id == 'UA2rWxwH2XPxOypfWGZP'){
+              if (doc.id == user.email){
                 // item = doc.data();
                 doc.data().pair.forEach((pair) => {
                   pair.get().then(snapshot => {

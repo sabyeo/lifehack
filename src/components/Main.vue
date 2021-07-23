@@ -7,7 +7,7 @@
       </router-link></div>
     </div>
     <div id='r'>
-      <div class='button'><router-link style="text-decoration: none; color: inherit;" to="/group" exact>
+      <div class='button'><router-link style="text-decoration: none; color: inherit;" to="/groups" exact>
         <h2>Form a Group</h2>
       </router-link></div>
     </div>

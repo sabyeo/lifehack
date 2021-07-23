@@ -71,7 +71,7 @@ export default {
       try { 
         auth.createUserWithEmailAndPassword(this.email, this.password);
         database.collection("user").doc(this.email).set({
-            accountDetail: {email: this.email, name: this.name, tele: this.tele, password: this.password, selfIntro: this.selfIntro, modules: this.selectedMods}
+            accountDetail: {email: this.email, name: this.name, tele: this.tele, selfIntro: this.selfIntro, modules: this.selectedMods}
           })
         this.$router.push("/sign_in");
       }

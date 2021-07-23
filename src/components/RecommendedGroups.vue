@@ -83,11 +83,13 @@ import firebase from "firebase";
         var doc = database.collection('groups').doc()
         doc.set({
                 common_modules: this.groupCommonModules,
-                pairs: this.groupMembers
+                pairs: this.groupMembers,
+                groupName: 'group '+Math.floor(Math.random()*10)
             }).then(()=>{docid = doc.id}).then(()=>{
                 this.docId = docid
                 console.log(docid)
                 console.log(groupMembersIDs)
+
                 alert('Group has been successfully created')
    
                 groupMembersIDs.forEach(item => {
@@ -96,7 +98,7 @@ import firebase from "firebase";
                     .collection("user")
                     .doc(item)
                     .update({
-                        "groups":firebase.firestore.FieldValue.arrayUnion('groups/'+docid)
+                        "groups":firebase.firestore.FieldValue.arrayUnion(database.doc('groups/'+docid))
                     })
                     
                 })

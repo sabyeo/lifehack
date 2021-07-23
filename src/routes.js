@@ -8,7 +8,6 @@ import GroupAllocation from './components/GroupAllocation.vue'
 import Friend from './components/Friend.vue'
 import Sign_Up from './components/Sign_Up.vue'
 import Sign_In from './components/Sign_In.vue'
-import Landing from './components/Landing.vue'
 
 
 export default[
@@ -21,6 +20,5 @@ export default[
     {path:'/recommended-groups/:id',component:RecommendedGroups},
     {path:'/group-allocations/',component:GroupAllocation},
     {path:'/sign_up',component:Sign_Up},
-    {path:'/sign_in',component:Sign_In},
-    {path:'/landing',component:Landing},
+    {path:'/sign_in',component:Sign_In}
 ]
