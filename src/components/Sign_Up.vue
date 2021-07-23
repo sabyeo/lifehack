@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="main">
     <h1 id="title">Sign Up Page</h1> 
@@ -9,25 +7,43 @@
     <form>
       <h2>Register</h2>
       <input
+        type="text"
+        placeholder="Name..."
+        v-model="name"
+      />
+      <br><br>
+      <input
         type="email"
         placeholder="Email address..."
         v-model="email"
       />
+      <br><br>
       <input
         type="password"
         placeholder="password..."
         v-model="password"
       />
-      <input
-        type="text"
-        placeholder="Name..."
-        v-model="name"
-      />
+      <br><br>
       <input
         type="text"
         placeholder="Telegram User ID..."
         v-model="tele"
       />
+      <br><br>
+        <input
+        type="text"
+        placeholder="Self Introduction.."
+        v-model="selfIntro"
+      />
+      <br><br>
+      <select multiple="true" class="form-control" v-bind:class="{ 'fix-height': multiple === 'true' }" v-model="selectedMods">
+        <option value="" selected disabled>Choose</option>
+        <option v-for="mod in mods" :value="mod.moduleCode" :key="mod.moduleCode">{{ mod.moduleCode }}</option>
+      </select>
+       <br>
+      <span>Selected Modules: {{selectedMods}}</span>
+      <br><br>
+
       <button @click="register">Register</button>
   </form>
     
@@ -36,7 +52,7 @@
 
 <script>
 import { auth, database} from "@/firebase/";
-
+import mods from "../assets/moduleList.json"
 
 export default {
   data() { 
@@ -44,7 +60,11 @@ export default {
       email: '', 
       password: '', 
       name: '',
-      tele: ''
+      tele: '',
+      selfIntro: '',
+      modules: '',
+      mods: mods,
+      selectedMods: null 
     }; 
   },
   methods: {
@@ -52,20 +72,21 @@ export default {
       try { 
         auth.createUserWithEmailAndPassword(this.email, this.password);
         database.collection("user").doc(this.email).set({
-            accountDetail: {email: this.email, name: this.name, tele: this.tele, password: this.password}
-
+            accountDetail: {email: this.email, name: this.name, tele: this.tele, password: this.password, selfIntro: this.selfIntro, modules: this.selectedMods}
           })
         this.$router.push("/sign_in");
       }
       catch (err) {
         this.error = err.message;
       }
-
     },
+    // selectMods (event) {
+    //   this.selectedMods = event.target.options[event.target.options.selectedIndex].text
+    // }
   // beforeCreate: function() {
   //   document.body.className = 'about';
   // }
-  }
+  },
 }
 </script>
 
@@ -90,5 +111,3 @@ h1{
     font-size:60px;
     font-weight: lighter;
 }
-
-</style>
