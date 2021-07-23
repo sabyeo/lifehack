@@ -66,7 +66,7 @@ p{
 h1{
     position:relative;
     margin-left: 10%;
-    margin-top:10%;
+    margin-top:5%;
     text-align: left;
     font-size:60px;
     font-weight: lighter;
