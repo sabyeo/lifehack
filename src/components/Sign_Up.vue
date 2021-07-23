@@ -41,7 +41,7 @@
         <option v-for="mod in mods" :value="mod.moduleCode" :key="mod.moduleCode">{{ mod.moduleCode }}</option>
       </select>
        <br>
-      <span>Selected Modules: {{selectedMods}}</span>
+      <p id='mods'>Selected Modules: {{selectedMods.join(',  ')}}</p>
       <br><br>
 
       <button @click="register">Register</button>
@@ -92,6 +92,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+<style scoped>
 p{
     position: relative;
     text-align: left;
@@ -111,3 +112,27 @@ h1{
     font-size:60px;
     font-weight: lighter;
 }
+
+form{
+  text-align: left;
+  margin-left:10.2vw
+}
+
+input, select {
+  font-size: 15px;
+  padding: 5px 20px;
+  width: 500px;
+}
+
+button {
+  margin: 10px 0px;
+  padding: 5px 20px;
+  font-size: 20px;
+}
+
+#mods {
+  padding-top: 10px;
+  font-size: 20px
+}
+
+</style>
