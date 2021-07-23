@@ -8,10 +8,10 @@
             <router-link to="/about" exact>About Us</router-link>
           </a>
           <a>
-            <router-link to="/" exact>Home</router-link>
+            <router-link to="/main" exact>Home</router-link>
           </a>
           <a>
-            <router-link to="/test_firebase" exact>Test Firebase</router-link>
+            <router-link to="/groups" exact> Find a Group</router-link>
           </a>
         </div>
         </nav>
