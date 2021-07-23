@@ -12,12 +12,8 @@
     "firebase": "^8.8.0",
     "firebase-tools": "^9.16.0",
     "jquery": "^3.6.0",
-<<<<<<< HEAD
     "vue": "^2.6.11",
     "vue-router": "^3.5.2"
-=======
-    "vue": "^2.6.11"
->>>>>>> 2599d07d16e956103b0d07c279cfc8c2731498bf
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
