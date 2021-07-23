@@ -1,9 +1,10 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <div v-for="friend in otherUsers" v-bind:key="friend.accountDetail.email">
+    <div v-for="friend in otherUsers.filter(value => !this.friendsEmail.includes(value.email))" v-bind:key="friend.email">
       <FriendProfileFull v-bind:friend="friend" v-bind:ownModules="userModules"></FriendProfileFull>
     </div>
+
   </div>
 </template>
 
@@ -18,6 +19,8 @@ export default {
       msg: 'Friend Page',
       userModules: [],
       otherUsers: [],
+      friends: [],
+      friendsEmail:[]
       }
   },
   components: {
@@ -35,8 +38,6 @@ export default {
           if (documentSnapshot.exists) {
             // get modules
             this.userModules = documentSnapshot.data().accountDetail.modules
-            console.log('User Modules')
-            console.log(this.userModules)
           }
         });
       }
@@ -50,15 +51,46 @@ export default {
         .then(querySnapshot => {
           let item = {};
           querySnapshot.forEach((doc) => {
-            item = doc.data();
+            item = doc.data(); // each user in database (all users) 4
             if (item.accountDetail.email != user.email) {
-              this.otherUsers.push(item)
+              this.otherUsers.push(item.accountDetail)
+
             }
+            })
+            // var pairings = userRef.pair;
+            // console.log(pairings);
           });
-        })
-      console.log(this.otherUsers)
-      }
+        }
+      },
+      getFriends: function() {
+        var user = auth.currentUser;
+        if (user) {
+          var userRef = database.collection("user").doc(user.email); // current user
+            userRef.get().then((doc) => {
+              if (doc.exists) {
+                let pairRefList = doc.data().pair
+                pairRefList.forEach((ref) => { // each pair of the current user 1
+                  ref.get().then(snapshot => {
+                    var memberRefList = snapshot.data().members
+                    memberRefList.forEach((memberRef) => { // each member of the pair of the current user 2
+                      memberRef.get().then(snapshot => {
+                        if (snapshot.exists) {
+                          this.friends.push(snapshot.data().accountDetail);
+                          this.friendsEmail.push(snapshot.data().accountDetail.email);
+                          console.log(this.friends)
+                        }
+                      })
+                    })
+                  })
+                })
+              }
+            })
+        }
     },
+    // if ((item.accountDetail.email != snapshot.data().accountDetail.email) && (!(item.accountDetail.email in this.otherUsers))) {//HARDCODE TO CHANGE
+    //                         this.otherUsers.push(item.accountDetail.email)
+    //                         console.log(this.otherUsers)
+    //                       }
     // getSimilarUsers: function() {
     //   let similarUserList = []
     //   for (const user in otherUsers) {
@@ -77,7 +109,8 @@ export default {
   },
   mounted() {
       this.fetchItems();
-      this.getOtherUsers()
+      this.getOtherUsers();
+      this.getFriends();
   },
   created() {
   }

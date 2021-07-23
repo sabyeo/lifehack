@@ -2,8 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <button class="fill"><router-link to="/sign_up">Sign Up</router-link></button>
-    <button class="fill"><router-link to="/sign_in">Log In</router-link></button> 
 
+    <button class="fill"><router-link to="/sign_in">Log In</router-link></button> 
 
   </div>
 </template>
