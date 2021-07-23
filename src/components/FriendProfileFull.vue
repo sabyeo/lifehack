@@ -1,14 +1,18 @@
 <template>
   <div>
     <div id='left'>
+
       <h2>{{friend.name}}</h2>
+
       <h4>Common Modules:</h4>
       <li v-for="mod in friend.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
           {{mod}}
       </li>
     </div>
     <div id='right'>
-      <a v-bind:href="'https://t.me/'+ friend.tele">
+
+      <a v-bind:href="'https://t.me/'+ friend.tele" target="_blank">
+
         <!-- HARDCODE USER TO CHANGE-->
         <button class="ui button" v-on:click='partnerMade(friend)'>CONNECT</button> 
       </a>

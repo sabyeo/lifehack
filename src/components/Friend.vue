@@ -54,6 +54,7 @@ export default {
             item = doc.data(); // each user in database (all users) 4
             if (item.accountDetail.email != user.email) {
               this.otherUsers.push(item.accountDetail)
+
             }
             })
             // var pairings = userRef.pair;
