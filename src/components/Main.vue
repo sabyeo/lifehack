@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { database } from "@/firebase/";
+import { database,auth } from "@/firebase/";
 import FriendProfile from './FriendProfile.vue';
 import GroupProfile from './GroupProfile.vue';
 
@@ -46,9 +46,11 @@ export default {
   },
   methods: {
     fetchItems: function () {
-      database
+      var user = auth.currentUser;
+      if (user) {
+        database
         .collection("user")
-        .doc('UA2rWxwH2XPxOypfWGZP') //TO REPLACE HARDCODE
+        .doc(user.email) //TO REPLACE HARDCODE
         .get()
         .then(documentSnapshot => {
           if (documentSnapshot.exists) {
@@ -77,6 +79,8 @@ export default {
       console.log('test')
       console.log(this.groupMemberList)
       console.log('test done')
+      }
+      
     },
     getGroupMembers: function (data) {
       console.log('get group members called')

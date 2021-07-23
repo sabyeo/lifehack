@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { database } from "@/firebase/";
+import { database, auth } from "@/firebase/";
 import FriendProfileFull from './FriendProfileFull.vue';
 
 export default {
@@ -25,9 +25,11 @@ export default {
   },
   methods: {
     fetchItems: function () {
-      database
+      var user = auth.currentUser;
+      if (user) {
+        database
         .collection("user")
-        .doc('UA2rWxwH2XPxOypfWGZP') //TO REPLACE HARDCODE
+        .doc(user.email) //TO REPLACE HARDCODE
         .get()
         .then(documentSnapshot => {
           if (documentSnapshot.exists) {
@@ -37,22 +39,25 @@ export default {
             console.log(this.userModules)
           }
         });
+      }
     },
     getOtherUsers: function() {
-      database
+      var user = auth.currentUser;
+      if (user) {
+        database
         .collection("user")
         .get()
         .then(querySnapshot => {
           let item = {};
           querySnapshot.forEach((doc) => {
             item = doc.data();
-            if (item.accountDetail.email != 'nat@gmail.com') {//TO REPLACE HARDCODE
+            if (item.accountDetail.email != user.email) {//TO REPLACE HARDCODE
               this.otherUsers.push(item)
             }
           });
         })
-      
       console.log(this.otherUsers)
+      }
     },
     // getSimilarUsers: function() {
     //   let similarUserList = []

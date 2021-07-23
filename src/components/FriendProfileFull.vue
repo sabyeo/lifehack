@@ -10,14 +10,14 @@
     <div id='right'>
       <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">
         <!-- HARDCODE USER TO CHANGE-->
-        <button class="ui button" v-on:click='partnerMade("UA2rWxwH2XPxOypfWGZP", friend)'>CONNECT</button> 
+        <button class="ui button" v-on:click='partnerMade(friend)'>CONNECT</button> 
       </a>
     </div>
   </div>
 </template>
 
 <script>
-import { database } from "@/firebase/";
+import { database, auth } from "@/firebase/";
 import firebase from "firebase";
 
 export default {
@@ -30,22 +30,27 @@ export default {
     }
   },
   methods: {
-    partnerMade: function(u1, u2) {
-      const u1_ref = 'user/' + u1 // HARDCODE TO CHANGE U1
-      const u2_ref = 'user/' + u2.accountDetail.email
+    partnerMade: function(u2) {
+      var user = auth.currentUser;
+      if (user) {
+        const u1_ref = 'user/' + user // HARDCODE TO CHANGE U1
+        const u2_ref = 'user/' + u2.accountDetail.email
+        
+        database.collection('pair').add({
+          common_modules: u2.accountDetail.modules.filter(value => this.ownModules.includes(value)),
+          members: [database.doc(u1_ref), database.doc(u2_ref)], 
+        }).then(function(docRef) {
+          const pairId = docRef.id;
+          database.doc(u1_ref).update({
+            pair: firebase.firestore.FieldValue.arrayUnion(database.doc('pair/' + pairId))
+          })
+          database.doc(u2_ref).update({
+            pair: firebase.firestore.FieldValue.arrayUnion(database.doc('pair/' + pairId))
+          })
+        })
+      }
+
       
-      database.collection('pair').add({
-        common_modules: u2.accountDetail.modules.filter(value => this.ownModules.includes(value)),
-        members: [database.doc(u1_ref), database.doc(u2_ref)], 
-      }).then(function(docRef) {
-        const pairId = docRef.id;
-        database.doc(u1_ref).update({
-          pair: firebase.firestore.FieldValue.arrayUnion(database.doc('pair/' + pairId))
-        })
-        database.doc(u2_ref).update({
-          pair: firebase.firestore.FieldValue.arrayUnion(database.doc('pair/' + pairId))
-        })
-      })
     }
   },
 }

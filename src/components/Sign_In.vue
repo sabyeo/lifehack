@@ -35,7 +35,7 @@ export default {
     login() {
       auth.signInWithEmailAndPassword(this.email, this.password)
       .then(() => {
-        this.$router.push('/landing');
+        this.$router.push('/main');
       })
       .catch(error => {
         alert(error.message);
