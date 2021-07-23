@@ -19,9 +19,7 @@
     </div>
     <h2> Groups </h2>
     <div v-for="group in this.groupList" v-bind:key="group.id">
-      <li v-for="member in group.members" v-bind:key="member.reference">
-        {{member.reference}}
-      </li>
+      <li v-for="members in group" v-bind:key="members.name">{{members.name}}</li>
     </div>
   </div>
 </div>
@@ -53,7 +51,6 @@ export default {
         .then(documentSnapshot => {
           if (documentSnapshot.exists) {
             this.ownModules = documentSnapshot.data().accountDetail.modules
-            console.log(this.ownModules)
             
             // get pairs
             let pairRefList = documentSnapshot.data().pairs
@@ -67,18 +64,32 @@ export default {
             let groupRefList = documentSnapshot.data().groups
             groupRefList.forEach((ref) => {
               ref.groupId.get().then(snapshot => {
-                this.groupList.push(snapshot.data())
+                let memberDetailsList = this.getGroupMembers(snapshot.data());
+                this.groupMemberList.push(memberDetailsList)
               })
             })
           }
         });
-    } 
+    },
+    getGroupMembers: function (data) {
+      console.log('get group members called')
+      let memberDetailsList = []
+      let memberRefList = data.members.map(function(x){return x.reference})
+      memberRefList.forEach((ref) => {
+        ref.get().then(snapshot => {
+          memberDetailsList.push(snapshot.data())
+        })
+      })
+      return memberDetailsList
+    }
   },
   created() {
-      this.fetchItems();
+    this.fetchItems();
   },
   mounted() {
-    console.log(this.groupList)
+      console.log('test')
+      console.log(this.groupMemberList)
+      console.log('test done')
   }
 }
 </script>

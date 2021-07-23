@@ -1,11 +1,11 @@
 <template>
   <div>
-      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">link</a>
       <h2>{{friend.accountDetail.name}}</h2>
       <p>Similar Modules:</p>
       <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
           {{mod}}
       </li>
+      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">Contact via Telegram!</a>
   </div>
 </template>
 
