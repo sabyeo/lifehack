@@ -1,14 +1,14 @@
 <template>
   <div>
     <div id='left'>
-      <h2>{{friend.accountDetail.name}}</h2>
+      <h2>{{friend.name}}</h2>
       <h4>Common Modules:</h4>
-      <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
+      <li v-for="mod in friend.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
           {{mod}}
       </li>
     </div>
     <div id='right'>
-      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">
+      <a v-bind:href="'https://t.me/'+ friend.tele">
         <!-- HARDCODE USER TO CHANGE-->
         <button class="ui button" v-on:click='partnerMade(friend)'>CONNECT</button> 
       </a>
@@ -34,10 +34,10 @@ export default {
       var user = auth.currentUser;
       if (user) {
         const u1_ref = 'user/' + user // HARDCODE TO CHANGE U1
-        const u2_ref = 'user/' + u2.accountDetail.email
+        const u2_ref = 'user/' + u2.email
         
         database.collection('pair').add({
-          common_modules: u2.accountDetail.modules.filter(value => this.ownModules.includes(value)),
+          common_modules: u2.modules.filter(value => this.ownModules.includes(value)),
           members: [database.doc(u1_ref), database.doc(u2_ref)], 
         }).then(function(docRef) {
           const pairId = docRef.id;
