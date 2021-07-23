@@ -19,7 +19,7 @@ export default[
     {path:'/test_firebase',component:Test_Firebase},
     {path:'/groups',component:Groups},
     {path:'/recommended-groups/:id',component:RecommendedGroups},
-    {path:'/group-allocations/',component:GroupAllocation}
+    {path:'/group-allocations/',component:GroupAllocation},
     {path:'/sign_up',component:Sign_Up},
     {path:'/sign_in',component:Sign_In},
     {path:'/landing',component:Landing},
