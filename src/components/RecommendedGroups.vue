@@ -1,15 +1,15 @@
 <template>
   <div class="main">
     <h1 id="title"> Find a group </h1> 
-    <p id="desc"> Here are the recommended groups</p>
-    <li v-for="item in groupList" v-bind:key="item.id">
-      <p> {{item[0].id}} </p>
-      <p> Number of Common Modules with your pair: {{item[0].data().common_modules.length}} </p>
+    <p id="desc"> Here are the recommended groups:</p>
+    <div v-for="item in groupList" v-bind:key="item.id" id='container'>
       <p> {{item[1]}} </p>
-      <button v-on:click="join_group(item)"> 
+      <p> Number of Common Modules with your pair: {{item[0].data().common_modules.length}} </p>
+     
+      <button v-on:click="join_group(item)"  id = 'button'> 
         Join
       </button>
-    </li>
+    </div>
     
   </div>
 </template>
@@ -91,7 +91,7 @@ import firebase from "firebase";
                 console.log(groupMembersIDs)
 
                 alert('Group has been successfully created')
-   
+            
                 groupMembersIDs.forEach(item => {
                     console.log(item)
                     database
@@ -165,30 +165,32 @@ import firebase from "firebase";
                         .collection("pair") 
                         .get()
                         .then((querySnapShot2) => { 
-                            let group_modules = {}
-                            let filtered = 0
-                            querySnapShot2.forEach(async (doc2) => {
-                                group_modules = doc2.data().common_modules
-                                // console.log(group_modules)
-                                // console.log(common_modules)
-                                filtered = group_modules.filter(value => common_modules.includes(value)).length
-                                console.log(filtered)
-                                this.groupCommonModules = group_modules.filter(value => common_modules.includes(value))
+                            if (querySnapShot2.id != doc.id){
+                                let group_modules = {}
+                                let filtered = 0
+                                querySnapShot2.forEach(async (doc2) => {
+                                    group_modules = doc2.data().common_modules
+                                    // console.log(group_modules)
+                                    // console.log(common_modules)
+                                    filtered = group_modules.filter(value => common_modules.includes(value)).length
+                                    console.log(filtered)
+                                    this.groupCommonModules = group_modules.filter(value => common_modules.includes(value))
 
-                                if (filtered != 0){
-                                    if (doc2.id != this.pairId){
-                                        let members = []
-                                        doc2.data().members.forEach((member) => {
-                                            member.get().then(snapshot2 => {
-                                                members.push(snapshot2.data().accountDetail.name)
+                                    if (filtered != 0){
+                                        if (doc2.id != this.pairId){
+                                            let members = []
+                                            doc2.data().members.forEach((member) => {
+                                                member.get().then(snapshot2 => {
+                                                    members.push(snapshot2.data().accountDetail.name)
+                                                })
                                             })
-                                        })
-                                        this.groupList.push([doc2,members])
-                                       
+                                            this.groupList.push([doc2,members])
+                                        
+                                        }
                                     }
-                                }
-                                
-                            });
+                                    
+                                });
+                            }
             
                         });
                 }
@@ -230,5 +232,21 @@ import firebase from "firebase";
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#title{
+  margin-right:15.5%;
+}
+#container{
+  border-style: solid;
+  border-width: 2px;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:2%;
+  padding-bottom:1%;
+  
+}
+#button{
+    width:50px;
+    height:30px;
+}
 
 </style>
