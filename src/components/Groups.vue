@@ -3,13 +3,13 @@
     <h1 id="title"> Find a group </h1> 
     <p id="desc"> Select the pair you wish to find a group for: </p>
     
-    <li v-for="item in pairList" v-bind:key="item.id">
+    <div v-for="item in pairList" v-bind:key="item.id" id = "container">
+      <p id="header">Pair</p>
       <router-link :to="'/recommended-groups/' + item[0].id">
-      {{item[1]}}
-      {{item[0].data().common_modules}} 
+      <p> {{item[1]}} </p>
       </router-link>
-      <p>{{item[0].id}}</p>
-    </li>
+      <p>List of Common Modules: {{item[0].data().common_modules}} </p>
+    </div>
     
   </div>
 </template>
@@ -74,5 +74,20 @@ import { database,auth } from "@/firebase/";
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#title{
+  margin-right:15%;
+}
+#container{
+  border-style: solid;
+  border-width: 2px;
+  width: 80%;
+  margin-left:10%;
+  margin-bottom:2%;
+  
+}
+#header{
+  font-weight: bold;
+  font-size: 20px;
+}
 
 </style>
