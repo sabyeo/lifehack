@@ -35,8 +35,6 @@ export default {
           if (documentSnapshot.exists) {
             // get modules
             this.userModules = documentSnapshot.data().accountDetail.modules
-            console.log('User Modules')
-            console.log(this.userModules)
           }
         });
       }
@@ -50,6 +48,16 @@ export default {
         .then(querySnapshot => {
           let item = {};
           querySnapshot.forEach((doc) => {
+            var userRef = database.collection("user").doc(user.email);
+            userRef.get().then((doc) => {
+              if (doc.exists) {
+                  var pairings = doc.data().pair
+                  
+                  console.log("friends", pairings)
+              } 
+            })
+            // var pairings = userRef.pair;
+            // console.log(pairings);
             item = doc.data();
             if (item.accountDetail.email != user.email) {//TO REPLACE HARDCODE
               this.otherUsers.push(item)

@@ -1,9 +1,8 @@
 <template>
   <div class="main">
     <h1 id="title">Sign Up Page</h1> 
-    <p id="desc"> Welcome to Life Hack, a web application which aims to... </p>
-    <p>CONTACT DETAILS</p>  
-    <p> Feel free to contact us via phone or email </p>
+    <p id="desc"> Create an account and start making some friends in class!</p>
+
     <form>
       <h2>Register</h2>
       <input
@@ -36,7 +35,7 @@
         v-model="selfIntro"
       />
       <br><br>
-      <select multiple="true" class="form-control" v-bind:class="{ 'fix-height': multiple === 'true' }" v-model="selectedMods">
+      <select multiple="true" data-live-search="true" v-bind:class="{ 'fix-height': multiple === 'true' }" v-model="selectedMods">
         <option value="" selected disabled>Choose</option>
         <option v-for="mod in mods" :value="mod.moduleCode" :key="mod.moduleCode">{{ mod.moduleCode }}</option>
       </select>
