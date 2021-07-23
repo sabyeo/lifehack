@@ -6,7 +6,7 @@
         {{mod}}
     </li>
     <div id='buttonDiv'>
-      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">
+      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele" target="_blank">
         <!-- HARDCODE USER TO CHANGE-->
         <button class="ui button">CONTACT</button> 
       </a>

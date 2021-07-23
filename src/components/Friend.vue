@@ -51,7 +51,7 @@ export default {
           let item = {};
           querySnapshot.forEach((doc) => {
             item = doc.data();
-            if (item.accountDetail.email != user.email) {//TO REPLACE HARDCODE
+            if (item.accountDetail.email != user.email) {
               this.otherUsers.push(item)
             }
           });
