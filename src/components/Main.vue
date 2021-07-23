@@ -14,13 +14,13 @@
   </div>
   <div id='right'>
     <h2> Friends </h2>
-    <div v-for="friend in pairList" v-bind:key="friend.accountDetail.email">
+    <div v-for="friend in this.pairList" v-bind:key="friend.accountDetail.email">
       <FriendProfile v-bind:friend="friend" v-bind:ownModules="ownModules"></FriendProfile>
     </div>
-    <h2> Groups </h2>
+    <!-- <h2> Groups </h2>
     <div v-for="group in groupMemberList" v-bind:key="group.index">
       <GroupProfile v-bind:group="group" v-bind:ownModules="ownModules" v-bind:ownEmail="ownEmail"></GroupProfile>
-    </div>
+    </div> -->
   </div>
 </div>
 </template>
@@ -28,7 +28,7 @@
 <script>
 import { database } from "@/firebase/";
 import FriendProfile from './FriendProfile.vue';
-import GroupProfile from './GroupProfile.vue';
+// import GroupProfile from './GroupProfile.vue';
 
 export default {
   name: 'Home',
@@ -42,7 +42,7 @@ export default {
   },
   components: {
     FriendProfile,
-    GroupProfile,
+    //GroupProfile,
   },
   methods: {
     fetchItems: function () {
@@ -56,27 +56,22 @@ export default {
             this.ownModules = documentSnapshot.data().accountDetail.modules
             
             // get pairs
-            let pairRefList = documentSnapshot.data().pairs
+            let pairRefList = documentSnapshot.data().pair
             pairRefList.forEach((ref) => {
               ref.get().then(snapshot => {
-                this.pairList.push(snapshot.data())
+                var memberRefList = snapshot.data().members
+                memberRefList.forEach((memberRef) => {
+                  memberRef.get().then(snapshot => {
+                    if (snapshot.data().accountDetail.email != 'nat@gmail.com') {//HARDCODE TO CHANGE
+                      this.pairList.push(snapshot.data())
+                    }
+                  })
+                })
               })
             })
-
-            // get groups
-            let groupRefList = documentSnapshot.data().groups
-            groupRefList.forEach((ref) => {
-              ref.groupId.get().then(snapshot => {
-                let memberDetailsList = this.getGroupMembers(snapshot.data());
-                this.groupMemberList.push(memberDetailsList)
-              })
-            })
+            console.log(this.pairList)
           }
         });
-
-      console.log('test')
-      console.log(this.groupMemberList)
-      console.log('test done')
     },
     getGroupMembers: function (data) {
       console.log('get group members called')
