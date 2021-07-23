@@ -50,7 +50,7 @@ export default {
       if (user) {
         database
         .collection("user")
-        .doc(user.email) //TO REPLACE HARDCODE
+        .doc(user.email)
         .get()
         .then(documentSnapshot => {
           if (documentSnapshot.exists) {
@@ -65,7 +65,7 @@ export default {
                 memberRefList.forEach((memberRef) => {
                   memberRef.get().then(snapshot => {
                     if (snapshot.exists) {
-                      if (snapshot.data().accountDetail.email != 'nat@gmail.com') {//HARDCODE TO CHANGE
+                      if (snapshot.data().accountDetail.email != user.email) {
                         this.pairList.push(snapshot.data())
                       }
                     }
