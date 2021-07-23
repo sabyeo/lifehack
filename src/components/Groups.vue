@@ -75,7 +75,7 @@ import { database,auth } from "@/firebase/";
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #title{
-  margin-right:15%;
+  margin-right:17%;
 }
 #container{
   border-style: solid;
