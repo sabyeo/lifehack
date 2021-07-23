@@ -1,9 +1,6 @@
 <template>
   <div class="main">
     <h1 id="title">Sign Up Page</h1> 
-    <p id="desc"> Welcome to Life Hack, a web application which aims to... </p>
-    <p>CONTACT DETAILS</p>  
-    <p> Feel free to contact us via phone or email </p>
     <form>
       <h2>Register</h2>
       <input
@@ -40,8 +37,8 @@
         <option value="" selected disabled>Choose</option>
         <option v-for="mod in mods" :value="mod.moduleCode" :key="mod.moduleCode">{{ mod.moduleCode }}</option>
       </select>
-       <br>
-      <span>Selected Modules: {{selectedMods}}</span>
+       <br><br>
+      <span>Selected Modules: {{selectedMods.join(',  ')}}</span>
       <br><br>
 
       <button @click="register">Register</button>
@@ -101,6 +98,7 @@ p{
     font-size: 30px;
     
 }
+
 h1{
     position:relative;
     margin-left: 10%;
@@ -109,3 +107,25 @@ h1{
     font-size:60px;
     font-weight: lighter;
 }
+
+form{
+  text-align: left;
+  margin-left:10.2vw
+}
+
+input, select {
+  font-size: 15px;
+  padding: 5px 20px;
+  width: 550px;
+}
+
+select {
+  width: 595px;
+}
+
+button {
+  margin: 10px 0px;
+  padding: 5px 20px;
+  font-size: 20px;
+}
+</style>
