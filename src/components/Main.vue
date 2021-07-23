@@ -1,6 +1,7 @@
 <template>
 <div id='outer'>
   <div id='left'>
+    <h1>Find Friends who are Taking the Same Modules!</h1>
     <div id='l'>
       <div class='button'><router-link style="text-decoration: none; color: inherit;" to="/friend" exact>
         <h2>Find a Friend</h2>
@@ -102,6 +103,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  padding-top:20vh;
+  font-size: 60px;
+}
+
 h3 {
   margin: 40px 0 0;
 }
@@ -118,11 +124,12 @@ a {
 }
 #left {
   float: left;
-  width: 80%;
+  width: 70%;
+  overflow: hidden;
 }
 #right {
   width: 20%;
-  height: 100%;
+  height: 82vh;
   float: right;
   border-color: #1D3557;
   border-style: solid;
@@ -138,17 +145,18 @@ a {
 #l {
   float: left;
   width: 30%;
-  margin-top: 60vh;
+  margin-top: 15vh;
   margin-left: 15%;
 }
 #r {
   float: right;
   width: 30%;
-  margin-top: 60vh;
+  margin-top: 15vh;
   margin-right: 15%;
 }
 
 #outer {
   margin: 20px;
+  overflow: hidden;
 }
 </style>

@@ -10,9 +10,6 @@
           <a>
             <router-link to="/main" exact>Home</router-link>
           </a>
-          <a>
-            <router-link to="/groups" exact> Find a Group</router-link>
-          </a>
         </div>
         </nav>
     </header>
@@ -47,7 +44,7 @@ export default {
     border-bottom-style: solid;
     border-bottom-color: white;
     border-bottom-width: 1px;
-    height:80px;
+    height:100px;
     width: 100%;
     top: 0;
     padding-bottom: 5px;
@@ -73,7 +70,7 @@ a{
 .links{
   padding-right: 10px;
   float: right;
-  margin-top: 55px;
+  margin-top: 70px;
 }
 
 #index{
