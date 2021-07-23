@@ -8,12 +8,14 @@
         type="email"       
         placeholder="Email address..."       
         v-model="email"     
-      />     
+      />  
+      <br><br>   
       <input       
         type="password"       
         placeholder="password..."       
         v-model="password"     
-      />     
+      />    
+      <br><br>  
       <button type="submit">
         Login
       </button>   
