@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h1 id="title"> About Us</h1> 
-    <p id="desc"> Welcome to Life Hack, a web application which aims to... </p>
+    <p id="desc"> We aim to provide a seamless and fuss-free platform for NUS students to reach out to other students taking the same modules - helping students find study groups amid COVID-19.</p>
     <p>CONTACT DETAILS</p>  
     <p> Feel free to contact us via phone or email </p>
     <p class="contactbody"> <img src="../assets/Home.png" width=30px> NUS School of Computing, COM1, 13, Computing Dr, 117417</p>
@@ -24,7 +24,7 @@ p{
     position: relative;
     text-align: left;
     margin-left: 10%;
-    
+    margin-right: 5%;
 }
 #desc{
     font-size: 30px;

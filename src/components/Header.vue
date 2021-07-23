@@ -10,9 +10,6 @@
           <a>
             <router-link to="/main" exact>Home</router-link>
           </a>
-          <a>
-            <router-link to="/groups" exact> Find a Group</router-link>
-          </a>
         </div>
         </nav>
     </header>
