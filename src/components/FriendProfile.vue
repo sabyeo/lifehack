@@ -1,12 +1,12 @@
 <template>
-        <div>
-            <a href="https://t.me/" onclick="location.href=this.href + this.friend.accountDetail.tele; return false;">link</a>
-            <h2>{{friend.accountDetail.name}}</h2>
-            <p>Similar Modules:</p>
-            <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
-                {{mod}}
-            </li>
-        </div>
+  <div>
+      <a v-bind:href="'https://t.me/'+ friend.accountDetail.tele">link</a>
+      <h2>{{friend.accountDetail.name}}</h2>
+      <p>Similar Modules:</p>
+      <li v-for="mod in friend.accountDetail.modules.filter(value => this.ownModules.includes(value))" v-bind:key="mod">
+          {{mod}}
+      </li>
+  </div>
 </template>
 
 <script>
