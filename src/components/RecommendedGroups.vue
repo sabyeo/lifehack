@@ -97,7 +97,7 @@ import firebase from "firebase";
                     database
                     .collection("user")
                     .doc(item)
-                    .update({
+                    .set({ // ORIGINALLY UPDATE
                         "groups":firebase.firestore.FieldValue.arrayUnion(database.doc('groups/'+docid))
                     })
                     
