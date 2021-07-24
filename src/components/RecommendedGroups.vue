@@ -93,11 +93,12 @@ import firebase from "firebase";
                 alert('Group has been successfully created')
             
                 groupMembersIDs.forEach(item => {
+                    console.log('GROUP MEMBER ID HERE')
                     console.log(item)
                     database
                     .collection("user")
                     .doc(item)
-                    .set({ // ORIGINALLY UPDATE
+                    .update({
                         "groups":firebase.firestore.FieldValue.arrayUnion(database.doc('groups/'+docid))
                     })
                     
