@@ -15,10 +15,8 @@
 </template>
 
 <script>
-
 import { database, auth } from "@/firebase/";
 import firebase from "firebase";
-
   export default {
     data() {
       return{
@@ -55,7 +53,6 @@ import firebase from "firebase";
     //     });
     //     return modlist
     //   },
-
     join_group: async function(item) {
         this.groupMembers = []
         this.groupMembersNames = []
@@ -89,11 +86,9 @@ import firebase from "firebase";
                 this.docId = docid
                 console.log(docid)
                 console.log(groupMembersIDs)
-
                 alert('Group has been successfully created')
             
                 groupMembersIDs.forEach(item => {
-                    console.log('GROUP MEMBER ID HERE')
                     console.log(item)
                     database
                     .collection("user")
@@ -106,11 +101,9 @@ import firebase from "firebase";
                 
                 })
         window.open('https://t.me/joinchat/cqj5u5hX604zZjRl')
-
         
         
         
-
         // this.groupMembersNames.push(itemId)
         // this.groupMembersNames.push(this.pairId)
         // console.log(this.groupMembers)
@@ -139,14 +132,11 @@ import firebase from "firebase";
         // console.log(already_added)
         // if (already_added == false){
         //     console.log('ADDED SUCCESSFULLY')
-
-
         // }
         // else{
         //     alert("Already Joined Group")
         // }
     },
-
     fetchItems: function () { 
         var user = auth.currentUser;
         if (user){
@@ -155,7 +145,6 @@ import firebase from "firebase";
         .get()
         .then((querySnapShot) => {
             querySnapShot.forEach((doc) => {
-
                 if (doc.id === this.pairId) {
                     let common_modules = {}
                     common_modules = doc.data().common_modules
@@ -176,7 +165,6 @@ import firebase from "firebase";
                                     filtered = group_modules.filter(value => common_modules.includes(value)).length
                                     console.log(filtered)
                                     this.groupCommonModules = group_modules.filter(value => common_modules.includes(value))
-
                                     if (filtered != 0){
                                         if (doc2.id != this.pairId){
                                             let members = []
@@ -219,7 +207,6 @@ import firebase from "firebase";
     }
    
     },
-
     created() {
         this.fetchItems();
         
@@ -249,5 +236,4 @@ import firebase from "firebase";
     width:50px;
     height:30px;
 }
-
 </style>
